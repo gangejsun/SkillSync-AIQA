@@ -71,3 +71,13 @@
 .gradient-card {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
+
+/* Hide scrollbar for horizontal scroll sections */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

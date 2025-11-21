@@ -4,13 +4,17 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Award, Filter, TrendingUp } from 'lucide-react';
 import { SkillCard } from '@/components/cards/SkillCard';
+import { BadgeDetailModal } from '@/components/modals/BadgeDetailModal';
 import { mockSkills, getSkillStats, getCategories } from '@/lib/mockBadges';
 import { Button } from '@/components/ui/Button';
+
+type Skill = typeof mockSkills[0];
 
 export default function BadgesPage() {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [selectedBadge, setSelectedBadge] = useState<Skill | null>(null);
 
   const stats = getSkillStats();
   const categories = getCategories();
@@ -160,34 +164,35 @@ export default function BadgesPage() {
             </span>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {completedSkills.map((skill) => (
-              <SkillCard
-                key={skill.id}
-                skill={skill}
-                onViewFeedback={() => {
-                  alert(`View feedback for ${skill.name}\n(Feature in development)`);
-                }}
-                onRetake={() => {
-                  router.push(`/challenges/${skill.id}`);
-                }}
-                onShare={() => {
-                  // Mock: Share functionality
-                  if (navigator.share) {
-                    navigator.share({
-                      title: `I earned ${skill.name} badge!`,
-                      text: `I scored ${skill.score}/100 on ${skill.name} - Top ${100 - (skill.percentile || 0)}%!`,
-                      url: window.location.href
-                    });
-                  } else {
-                    alert('Sharing feature:\n' +
-                      `${skill.name} - Grade ${skill.grade}\n` +
-                      `Score: ${skill.score}/100\n` +
-                      `(Real implementation will integrate with LinkedIn)`);
-                  }
-                }}
-              />
-            ))}
+          {/* 가로 스크롤 컨테이너 */}
+          <div className="relative -mx-6 px-6">
+            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+              {completedSkills.map((skill) => (
+                <div
+                  key={skill.id}
+                  onClick={() => setSelectedBadge(skill)}
+                >
+                  <SkillCard
+                    skill={skill}
+                    onShare={() => {
+                      // Mock: Share functionality
+                      if (navigator.share) {
+                        navigator.share({
+                          title: `I earned ${skill.name} badge!`,
+                          text: `I scored ${skill.score}/100 on ${skill.name} - Top ${100 - (skill.percentile || 0)}%!`,
+                          url: window.location.href
+                        });
+                      } else {
+                        alert('Sharing feature:\n' +
+                          `${skill.name} - Grade ${skill.grade}\n` +
+                          `Score: ${skill.score}/100\n` +
+                          `(Real implementation will integrate with LinkedIn)`);
+                      }
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -208,7 +213,8 @@ export default function BadgesPage() {
             챌린지를 완료하여 더 많은 스킬 배지를 획득하세요
           </p>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* 그리드 레이아웃 */}
+          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
             {lockedSkills.map((skill) => (
               <SkillCard
                 key={skill.id}
@@ -270,6 +276,37 @@ export default function BadgesPage() {
           </div>
         </div>
       </div>
+
+      {/* Badge Detail Modal */}
+      {selectedBadge && selectedBadge.status === 'completed' && (
+        <BadgeDetailModal
+          skill={selectedBadge}
+          isOpen={!!selectedBadge}
+          onClose={() => setSelectedBadge(null)}
+          onViewFeedback={() => {
+            alert(`View feedback for ${selectedBadge.name}\n(Feature in development)`);
+            setSelectedBadge(null);
+          }}
+          onRetake={() => {
+            router.push(`/challenges/${selectedBadge.id}`);
+            setSelectedBadge(null);
+          }}
+          onShare={() => {
+            if (navigator.share) {
+              navigator.share({
+                title: `I earned ${selectedBadge.name} badge!`,
+                text: `I scored ${selectedBadge.score}/100 on ${selectedBadge.name} - Top ${100 - (selectedBadge.percentile || 0)}%!`,
+                url: window.location.href
+              });
+            } else {
+              alert('Sharing feature:\n' +
+                `${selectedBadge.name} - Grade ${selectedBadge.grade}\n` +
+                `Score: ${selectedBadge.score}/100\n` +
+                `(Real implementation will integrate with LinkedIn)`);
+            }
+          }}
+        />
+      )}
     </div>
   );
 }
