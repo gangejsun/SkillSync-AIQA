@@ -63,16 +63,12 @@ export default function HomePage() {
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/challenges"
+              href="/aiq-assessment"
               className="rounded-lg border border-gray-300 bg-white px-8 py-4 text-base font-semibold text-gray-900 hover:bg-gray-50"
             >
               AIQ 검사 둘러보기
             </Link>
           </div>
-
-          <p className="mt-6 text-sm text-gray-500">
-            무료로 시작하세요 · 신용카드 불필요
-          </p>
         </div>
 
         {/* Features Grid */}
