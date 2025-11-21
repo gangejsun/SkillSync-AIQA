@@ -29,9 +29,7 @@ app.get('/', (req: Request, res: Response) => {
     port: PORT,
     endpoints: [
       'GET /health - Health check',
-      'POST /api/ai-usage/connect - Connect AI tool',
-      'GET /api/ai-usage/dashboard - Get usage dashboard',
-      'POST /api/ai-usage/sync - Sync usage data'
+      'TODO: API endpoints will be implemented when backend is ready'
     ]
   });
 });
