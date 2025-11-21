@@ -2,28 +2,6 @@ import request from 'supertest'
 import express, { Express } from 'express'
 import usageRoutes from '../../routes/usage.routes'
 
-// Mock the Supabase client - must be defined inline due to Jest hoisting
-jest.mock('@supabase/supabase-js', () => ({
-  createClient: jest.fn(() => ({
-    from: jest.fn(() => ({
-      insert: jest.fn(() => ({
-        select: jest.fn(() => ({
-          single: jest.fn(() => Promise.resolve({
-            data: {
-              integration_id: 'test-integration-id',
-              user_id: 'test-user-id',
-              tool_name: 'claude_code',
-              created_at: new Date().toISOString(),
-              last_synced_at: new Date().toISOString(),
-            },
-            error: null,
-          })),
-        })),
-      })),
-    })),
-  })),
-}))
-
 describe('POST /api/ai-usage/connect', () => {
   let app: Express
 
@@ -116,8 +94,8 @@ describe('POST /api/ai-usage/connect', () => {
     })
   })
 
-  describe.skip('Success Cases - Requires Supabase (TODO)', () => {
-    it('returns integration_id on successful connection', async () => {
+  describe('Success Cases - Validation Only', () => {
+    it('validates and accepts Claude Code API keys', async () => {
       const response = await request(app)
         .post('/api/ai-usage/connect')
         .set('Authorization', 'Bearer valid-test-token')
@@ -128,11 +106,11 @@ describe('POST /api/ai-usage/connect', () => {
         .expect(201)
 
       expect(response.body).toHaveProperty('success', true)
-      expect(response.body).toHaveProperty('integration_id')
-      expect(response.body).toHaveProperty('last_synced_at')
+      expect(response.body).toHaveProperty('message')
+      expect(response.body).toHaveProperty('provider', 'claude_code')
     })
 
-    it('accepts GitHub Copilot tokens', async () => {
+    it('validates and accepts GitHub Copilot tokens', async () => {
       const response = await request(app)
         .post('/api/ai-usage/connect')
         .set('Authorization', 'Bearer valid-test-token')
@@ -143,9 +121,10 @@ describe('POST /api/ai-usage/connect', () => {
         .expect(201)
 
       expect(response.body.success).toBe(true)
+      expect(response.body.provider).toBe('github_copilot')
     })
 
-    it('accepts Cursor API keys', async () => {
+    it('validates and accepts Cursor API keys', async () => {
       const response = await request(app)
         .post('/api/ai-usage/connect')
         .set('Authorization', 'Bearer valid-test-token')
@@ -156,6 +135,7 @@ describe('POST /api/ai-usage/connect', () => {
         .expect(201)
 
       expect(response.body.success).toBe(true)
+      expect(response.body.provider).toBe('cursor')
     })
   })
 })

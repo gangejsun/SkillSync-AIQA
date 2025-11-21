@@ -1,7 +1,5 @@
 import { Response } from 'express'
 import { AuthRequest } from '../middleware/auth'
-import { encrypt } from '../utils/crypto'
-import { supabase } from '../lib/supabase'
 
 type AIProvider = 'claude_code' | 'cursor' | 'github_copilot'
 
@@ -31,7 +29,7 @@ function validateApiKeyFormat(provider: AIProvider, apiKey: string): boolean {
 
 /**
  * POST /api/ai-usage/connect
- * Store encrypted API key for AI tool integration
+ * Validate API key format (UI only - no data storage yet)
  */
 export async function connectAITool(
   req: AuthRequest,
@@ -65,33 +63,12 @@ export async function connectAITool(
       return
     }
 
-    // Encrypt the API key
-    const encryptedKey = encrypt(api_key)
-
-    // Store in database
-    const { data, error } = await supabase
-      .from('ai_tool_integrations')
-      .insert({
-        user_id: req.user!.id,
-        tool_name: provider,
-        encrypted_api_key: encryptedKey,
-        is_active: true,
-        last_synced_at: new Date().toISOString(),
-      })
-      .select()
-      .single()
-
-    if (error) {
-      console.error('Database error:', error)
-      res.status(500).json({ error: 'Failed to store integration' })
-      return
-    }
-
-    // Return success
+    // TODO: Implement actual API key storage and data fetching when backend is ready
+    // For now, just return success after validation
     res.status(201).json({
       success: true,
-      integration_id: data.integration_id,
-      last_synced_at: data.last_synced_at,
+      message: 'API key validated successfully. Data storage not yet implemented.',
+      provider,
     })
   } catch (error) {
     console.error('Connect AI tool error:', error)

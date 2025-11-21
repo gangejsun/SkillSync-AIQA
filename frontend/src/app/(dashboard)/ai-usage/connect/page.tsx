@@ -181,11 +181,11 @@ export default function ConnectToolPage() {
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-blue-900 mb-2">
-                      🔒 Security Note
+                      ℹ️ Development Mode
                     </h4>
                     <p className="text-sm text-blue-800">
-                      Your API key will be encrypted using AES-256-CBC before
-                      storage. We never store plain text credentials.
+                      Currently in UI development mode. API key validation only - no data storage or fetching yet.
+                      Full integration will be implemented in the next phase.
                     </p>
                   </div>
 
