@@ -61,14 +61,8 @@ export default function ConnectToolPage() {
     setError('')
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/ai-usage/connect', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ provider: selectedTool, api_key: apiKey }),
-      // })
-
-      // Simulate API call
+      // UI only - no API call
+      // Simulate processing time
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       setSuccess(true)
@@ -76,7 +70,7 @@ export default function ConnectToolPage() {
         router.push('/ai-usage')
       }, 2000)
     } catch (err) {
-      setError('Failed to connect. Please check your API key and try again.')
+      setError('An unexpected error occurred.')
     } finally {
       setIsLoading(false)
     }
