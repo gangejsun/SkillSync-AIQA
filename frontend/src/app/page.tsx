@@ -51,7 +51,7 @@ export default function HomePage() {
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
             Claude Code, GitHub Copilot, Cursor 등 AI 도구 사용을 추적하고,
             <br />
-            AIQ 검사로 실력을 증명하며, AI 스킬에 맞는 채용 기회를 발견하세요.
+            AIQ(AI 활용 지능지수)로 실력을 증명하며, AI 스킬에 맞는 채용 기회를 발견하세요.
           </p>
 
           <div className="mt-10 flex items-center justify-center space-x-4">
@@ -66,7 +66,7 @@ export default function HomePage() {
               href="/aiq-assessment"
               className="rounded-lg border border-gray-300 bg-white px-8 py-4 text-base font-semibold text-gray-900 hover:bg-gray-50"
             >
-              AIQ 검사 둘러보기
+              AIQ 검사 무료로 받기
             </Link>
           </div>
         </div>
