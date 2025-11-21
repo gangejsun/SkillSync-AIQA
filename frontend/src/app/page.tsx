@@ -66,9 +66,13 @@ export default function HomePage() {
               href="/aiq-assessment"
               className="rounded-lg border border-gray-300 bg-white px-8 py-4 text-base font-semibold text-gray-900 hover:bg-gray-50"
             >
-              AIQ 검사 무료로 받기
+              AIQ 검사 받기
             </Link>
           </div>
+
+          <p className="mt-4 text-sm font-medium text-indigo-600">
+            지금 바로 무료로 검사 받으세요!
+          </p>
         </div>
 
         {/* Features Grid */}
