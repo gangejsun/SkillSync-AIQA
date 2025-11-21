@@ -167,7 +167,7 @@ export default function DashboardPage() {
               </div>
               <div className="flex-1">
                 <p className="text-sm text-gray-900">
-                  <span className="font-medium">"React 상태 관리"</span> 챌린지를
+                  <span className="font-medium">&quot;React 상태 관리&quot;</span> 챌린지를
                   완료했습니다
                 </p>
                 <p className="mt-1 text-xs text-gray-500">2시간 전</p>
@@ -194,7 +194,7 @@ export default function DashboardPage() {
               </div>
               <div className="flex-1">
                 <p className="text-sm text-gray-900">
-                  <span className="font-medium">"TypeScript Master"</span> 배지를
+                  <span className="font-medium">&quot;TypeScript Master&quot;</span> 배지를
                   획득했습니다
                 </p>
                 <p className="mt-1 text-xs text-gray-500">어제</p>

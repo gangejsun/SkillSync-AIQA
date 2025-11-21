@@ -223,7 +223,7 @@ export async function signUp(email: string, password: string, fullName: string) 
       full_name: fullName,
       github_username: null,
       linkedin_url: null,
-    });
+    } as any);
 
   if (profileError) {
     console.error('Failed to create user profile:', profileError);

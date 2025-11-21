@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import { AIQ_TYPE_INFO, CAPABILITY_DESCRIPTIONS, type AIQResult } from '@/lib/aiqCalculation';
+import { AIQ_TYPE_INFO, type AIQResult } from '@/lib/aiqCalculation';
+import { CAPABILITY_DESCRIPTIONS } from '@/lib/aiqQuestions';
 import { Button } from '@/components/ui/Button';
 import { Download, Share2, TrendingUp, Award, ArrowRight } from 'lucide-react';
 
@@ -14,6 +15,7 @@ export default function AIQResultsPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     loadResult();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   const loadResult = async () => {

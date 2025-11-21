@@ -278,9 +278,9 @@ export default function BadgesPage() {
       </div>
 
       {/* Badge Detail Modal */}
-      {selectedBadge && selectedBadge.status === 'completed' && (
+      {selectedBadge && selectedBadge.status === 'completed' && selectedBadge.grade && selectedBadge.score !== undefined && (
         <BadgeDetailModal
-          skill={selectedBadge}
+          skill={selectedBadge as typeof selectedBadge & { grade: 'S' | 'A' | 'B' | 'C' | 'D' | 'F'; score: number; completedAt: string }}
           isOpen={!!selectedBadge}
           onClose={() => setSelectedBadge(null)}
           onViewFeedback={() => {
