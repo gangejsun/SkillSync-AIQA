@@ -17,6 +17,7 @@ export interface DashboardData {
     date: string
     count: number
   }>
+  last_synced: string | null
 }
 
 // Generate mock heatmap data for last 90 days
@@ -69,4 +70,5 @@ export const mockDashboardData: DashboardData = {
     },
   ],
   heatmap_data: generateHeatmapData(),
+  last_synced: new Date().toISOString(),
 }
