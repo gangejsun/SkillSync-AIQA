@@ -254,7 +254,7 @@ export const useChallengeStore = create<ChallengeState>((set, get) => ({
         if (difficulty) queryParams.append('difficulty', difficulty);
         if (status) queryParams.append('status', status);
 
-        const response = await fetch(`/api/challenges?${queryParams.toString()}`);
+        const response = await fetch(`/api/quizzes?${queryParams.toString()}`);
         if (!response.ok) throw new Error('Failed to fetch challenges');
         const data = await response.json();
         set({ challenges: data.challenges, isLoading: false });
@@ -279,7 +279,7 @@ export const useChallengeStore = create<ChallengeState>((set, get) => ({
         set({ selectedChallenge: challenge, isLoading: false });
       } else {
         // Real mode: Fetch from API
-        const response = await fetch(`/api/challenges/${challengeId}`);
+        const response = await fetch(`/api/quizzes/${challengeId}`);
         if (!response.ok) throw new Error('Failed to fetch challenge');
         const data = await response.json();
         set({ selectedChallenge: data.challenge, isLoading: false });
@@ -306,7 +306,7 @@ export const useChallengeStore = create<ChallengeState>((set, get) => ({
       } else {
         // Real mode: Fetch from API
         const url = challengeId
-          ? `/api/challenges/${challengeId}/submissions`
+          ? `/api/quizzes/${challengeId}/submissions`
           : '/api/submissions';
         const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch submissions');
@@ -357,7 +357,7 @@ export const useChallengeStore = create<ChallengeState>((set, get) => ({
         formData.append('code_file', codeFile);
         if (githubUrl) formData.append('github_repo_url', githubUrl);
 
-        const response = await fetch(`/api/challenges/${challengeId}/submit`, {
+        const response = await fetch(`/api/quizzes/${challengeId}/submit`, {
           method: 'POST',
           body: formData,
         });

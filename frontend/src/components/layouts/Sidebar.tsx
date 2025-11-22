@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
   },
   {
     name: '스킬 퀴즈',
-    href: '/challenges',
+    href: '/quizzes',
     icon: ClipboardList,
   },
   {

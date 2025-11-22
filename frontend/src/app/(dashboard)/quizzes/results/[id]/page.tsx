@@ -19,7 +19,7 @@ export default function EvaluationResultsPage({ params }: { params: { id: string
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             AIQ Assessment Results Not Found
           </h1>
-          <Link href="/challenges" className="text-indigo-600 hover:underline">
+          <Link href="/quizzes" className="text-indigo-600 hover:underline">
             ← Back to AIQ Assessment
           </Link>
         </div>
@@ -36,7 +36,7 @@ export default function EvaluationResultsPage({ params }: { params: { id: string
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <Link
-          href={`/challenges/${submission.quiz_id}`}
+          href={`/quizzes/${submission.quiz_id}`}
           className="text-indigo-600 hover:text-indigo-700 mb-6 inline-flex items-center gap-2"
         >
           ← Back to Assessment
@@ -402,13 +402,13 @@ export default function EvaluationResultsPage({ params }: { params: { id: string
         {/* Actions */}
         <div className="flex gap-4">
           <Link
-            href="/challenges"
+            href="/quizzes"
             className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center"
           >
             Browse More Challenges
           </Link>
           <button
-            onClick={() => router.push(`/challenges/${submission.quiz_id}`)}
+            onClick={() => router.push(`/quizzes/${submission.quiz_id}`)}
             className="flex-1 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
           >
             Try Again

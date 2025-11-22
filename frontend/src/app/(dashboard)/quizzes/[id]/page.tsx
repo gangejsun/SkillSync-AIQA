@@ -27,7 +27,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
       <div className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">AIQ Assessment Not Found</h1>
-          <Link href="/challenges" className="text-indigo-600 hover:underline">
+          <Link href="/quizzes" className="text-indigo-600 hover:underline">
             ← Back to AIQ Assessment
           </Link>
         </div>
@@ -61,7 +61,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <Link
-          href="/challenges"
+          href="/quizzes"
           className="text-indigo-600 hover:text-indigo-700 mb-6 inline-flex items-center gap-2"
         >
           ← Back to AIQ Assessment
@@ -347,7 +347,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
                   )}
                   {submission.status === 'completed' && submission.evaluation_result && (
                     <Link
-                      href={`/challenges/results/${submission.submission_id}`}
+                      href={`/quizzes/results/${submission.submission_id}`}
                       className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
                     >
                       View Detailed Results →
