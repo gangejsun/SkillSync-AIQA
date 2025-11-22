@@ -41,7 +41,7 @@ export default function BadgesPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">스킬 배지 & 인증서</h1>
           <p className="mt-2 text-gray-600">
-            챌린지를 완료하고 검증된 스킬 배지를 획득하세요
+            퀴즈를 완료하고 검증된 스킬 배지를 획득하세요
           </p>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function BadgesPage() {
         <div className="rounded-lg border border-gray-200 bg-white p-6">
           <p className="text-sm font-medium text-gray-600">다음 레벨까지</p>
           <p className="mt-2 text-2xl font-bold text-gray-900">
-            {Math.max(0, 5 - (stats.completed % 5))} 챌린지
+            {Math.max(0, 5 - (stats.completed % 5))} 퀴즈
           </p>
           <p className="mt-1 text-xs text-gray-500">레벨 {Math.floor(stats.completed / 5) + 1}</p>
         </div>
@@ -202,15 +202,15 @@ export default function BadgesPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-semibold text-gray-900">
-              사용 가능한 챌린지
+              사용 가능한 퀴즈
             </h2>
             <span className="text-sm text-gray-600">
-              {lockedSkills.length}개 챌린지
+              {lockedSkills.length}개 퀴즈
             </span>
           </div>
 
           <p className="text-sm text-gray-600 mb-4">
-            챌린지를 완료하여 더 많은 스킬 배지를 획득하세요
+            퀴즈를 완료하여 더 많은 스킬 배지를 획득하세요
           </p>
 
           {/* 그리드 레이아웃 */}
@@ -256,7 +256,7 @@ export default function BadgesPage() {
               스킬 배지 시스템
             </h3>
             <p className="text-sm text-gray-700 mb-3">
-              각 챌린지를 완료하면 검증된 스킬 배지를 받습니다. 배지는 LinkedIn에 공유하거나
+              각 퀴즈를 완료하면 검증된 스킬 배지를 받습니다. 배지는 LinkedIn에 공유하거나
               인증서로 다운로드할 수 있습니다. 고득점을 받을수록 더 높은 등급의 배지를 획득합니다.
             </p>
             <div className="flex flex-wrap gap-2">

@@ -315,7 +315,7 @@ export default function SettingsPage() {
                 <div>
                   <p className="font-medium text-gray-900">이메일 알림</p>
                   <p className="text-sm text-gray-600">
-                    새로운 챌린지 및 배지 정보를 이메일로 받습니다
+                    새로운 퀴즈 및 배지 정보를 이메일로 받습니다
                   </p>
                 </div>
                 <input
@@ -327,9 +327,9 @@ export default function SettingsPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-gray-900">챌린지 완료 알림</p>
+                  <p className="font-medium text-gray-900">퀴즈 완료 알림</p>
                   <p className="text-sm text-gray-600">
-                    챌린지 평가가 완료되면 알림을 받습니다
+                    퀴즈 평가가 완료되면 알림을 받습니다
                   </p>
                 </div>
                 <input

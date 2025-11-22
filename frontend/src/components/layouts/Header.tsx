@@ -14,7 +14,7 @@ export default function Header() {
           <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="챌린지, 잡, 배지 검색..."
+            placeholder="퀴즈, 잡, 배지 검색..."
             className="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
           />
         </div>

@@ -142,7 +142,7 @@ export default function DashboardPage() {
                 배지 & 인증서 <span className="ml-2 text-xs text-gray-500">(준비중)</span>
               </h3>
               <p className="mt-2 text-sm text-gray-600">
-                챌린지를 완료하고 배지를 획득하세요. LinkedIn에 공유하여 스킬을
+                퀴즈를 완료하고 배지를 획득하세요. LinkedIn에 공유하여 스킬을
                 증명할 수 있습니다.
               </p>
               <div className="mt-4 flex items-center text-sm font-medium text-orange-600">
@@ -167,7 +167,7 @@ export default function DashboardPage() {
               </div>
               <div className="flex-1">
                 <p className="text-sm text-gray-900">
-                  <span className="font-medium">&quot;React 상태 관리&quot;</span> 챌린지를
+                  <span className="font-medium">&quot;React 상태 관리&quot;</span> 퀴즈를
                   완료했습니다
                 </p>
                 <p className="mt-1 text-xs text-gray-500">2시간 전</p>

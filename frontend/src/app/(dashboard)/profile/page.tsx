@@ -92,7 +92,7 @@ export default function ProfilePage() {
             <div className="rounded-lg border border-gray-200 bg-white p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">완료한 챌린지</p>
+                  <p className="text-sm font-medium text-gray-600">완료한 퀴즈</p>
                   <p className="mt-2 text-3xl font-bold text-gray-900">12</p>
                 </div>
                 <div className="rounded-full bg-purple-100 p-3">
@@ -149,7 +149,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-gray-900">
-                    <span className="font-medium">&quot;React 상태 관리&quot;</span> 챌린지를
+                    <span className="font-medium">&quot;React 상태 관리&quot;</span> 퀴즈를
                     완료했습니다
                   </p>
                   <p className="mt-1 text-xs text-gray-500">2시간 전</p>
@@ -187,7 +187,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-gray-900">
-                    <span className="font-medium">&quot;알고리즘 기초&quot;</span> 챌린지를
+                    <span className="font-medium">&quot;알고리즘 기초&quot;</span> 퀴즈를
                     시작했습니다
                   </p>
                   <p className="mt-1 text-xs text-gray-500">3일 전</p>
