@@ -43,7 +43,7 @@ export default function ChallengesPage() {
             AIQ Assessment
           </h1>
           <p className="text-gray-600">
-            AI 활용 능력을 측정하는 실전 코딩 검사
+            개발, 디자인, 마케팅, 기획 등 전 직군에서 필요한 AI 활용 능력을 측정하는 실전 챌린지
           </p>
         </div>
 
