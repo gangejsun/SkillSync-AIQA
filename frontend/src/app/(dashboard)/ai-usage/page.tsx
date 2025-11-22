@@ -16,7 +16,7 @@ export default function AIUsagePage() {
     dateRange: '90',
     tools: [],
   })
-  const [dashboardData, setDashboardData] = useState<DashboardData>(mockDashboardData as any as DashboardData)
+  const [dashboardData, setDashboardData] = useState<DashboardData>(mockDashboardData)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -68,17 +68,28 @@ export default function AIUsagePage() {
       }))
 
       // Update top tool
-      const topTool = data.tools.reduce((max, tool) =>
-        tool.requests > max.requests ? tool : max
-        , data.tools[0])
-      data.top_tool = { name: topTool.name, requests: topTool.requests }
+      if (data.tools.length > 0) {
+        const topTool = data.tools.reduce((max, tool) =>
+          tool.requests > max.requests ? tool : max
+          , data.tools[0])
+        data.top_tool = topTool
+      } else {
+        data.top_tool = null; // No tools, so no top tool
+      }
+    } else {
+      // If no tools are selected in the filter, reset to original dashboardData's tools
+      // and recalculate top_tool based on the original (or fetched) data
+      data.tools = dashboardData.tools;
+      data.total_interactions = dashboardData.total_interactions;
+      data.top_tool = dashboardData.top_tool;
     }
+
 
     // Recalculate active days
     data.active_days = data.heatmap_data.filter((d) => d.count > 0).length
 
     return data
-  }, [filters])
+  }, [filters, dashboardData]) // Added dashboardData to dependencies
 
   const data = filteredData
 
@@ -100,7 +111,7 @@ export default function AIUsagePage() {
             stats={{
               total_interactions: data.total_interactions,
               active_days: data.active_days,
-              top_tool: data.top_tool.name,
+              top_tool: data.top_tool?.name || 'N/A',
             }}
           />
         </div>
@@ -183,8 +194,8 @@ export default function AIUsagePage() {
 
               <UsageSummaryCard
                 title="Top Tool"
-                value={data.top_tool.name}
-                subtitle={`${data.top_tool.requests.toLocaleString()} requests`}
+                value={data.top_tool?.name || 'N/A'}
+                subtitle={data.top_tool ? `${data.top_tool.requests.toLocaleString()} requests` : 'No data'}
                 icon={
                   <svg
                     className="w-6 h-6"

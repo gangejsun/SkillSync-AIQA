@@ -2,12 +2,17 @@
 
 import React from 'react'
 
+export interface UsageTool {
+  name: string
+  displayName?: string
+  requests: number
+  color?: string
+  percentage?: number
+  active_days?: number
+}
+
 export interface UsageBarChartProps {
-  data: Array<{
-    name: string
-    requests: number
-    color: string
-  }>
+  data: UsageTool[]
   totalInteractions: number
 }
 
@@ -39,7 +44,7 @@ export function UsageBarChart({ data, totalInteractions }: UsageBarChartProps) {
                   className="absolute left-0 top-0 h-full rounded-lg transition-all duration-500 ease-out flex items-center justify-end pr-3"
                   style={{
                     width: `${percentage}%`,
-                    backgroundColor: tool.color,
+                    backgroundColor: tool.color || '#6366F1',
                   }}
                 >
                   {percentage > 10 && (
