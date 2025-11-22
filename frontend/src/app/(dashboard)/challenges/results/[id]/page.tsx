@@ -3,7 +3,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { mockSubmissions, mockQuizzes } from '@/lib/mockChallenges'
+import { mockSubmissions, mockQuizzes } from '@/lib/mockQuizzes'
 
 export default function EvaluationResultsPage({ params }: { params: { id: string } }) {
   const router = useRouter()

@@ -9,7 +9,7 @@ import {
   getDifficultyColor,
   getCategoryColor,
   getStatusColor,
-} from '@/lib/mockChallenges'
+} from '@/lib/mockQuizzes'
 
 export default function ChallengeDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()

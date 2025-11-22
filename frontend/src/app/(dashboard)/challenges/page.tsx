@@ -9,7 +9,7 @@ import {
   getStatusColor,
   type DifficultyLevel,
   type QuizCategory,
-} from '@/lib/mockChallenges'
+} from '@/lib/mockQuizzes'
 
 export default function ChallengesPage() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyLevel | 'all'>('all')
