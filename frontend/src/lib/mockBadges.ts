@@ -7,7 +7,7 @@ export type SkillData = SkillCardProps['skill'];
 export const mockSkills: SkillData[] = [
   // Completed Skills
   {
-    id: 'skill-1',
+    id: '2',  // Matches quiz_id in mockQuizzes
     name: 'React State Management',
     category: 'Frontend Development',
     difficulty: 'accomplished',
@@ -24,7 +24,7 @@ export const mockSkills: SkillData[] = [
     }
   },
   {
-    id: 'skill-2',
+    id: '3',  // Matches quiz_id in mockQuizzes
     name: 'TypeScript Advanced',
     category: 'Programming',
     difficulty: 'expert',
@@ -41,7 +41,7 @@ export const mockSkills: SkillData[] = [
     }
   },
   {
-    id: 'skill-3',
+    id: '1',  // Matches quiz_id in mockQuizzes
     name: 'REST API Design',
     category: 'Backend Development',
     difficulty: 'developing',
@@ -60,42 +60,42 @@ export const mockSkills: SkillData[] = [
 
   // Locked/Available Skills
   {
-    id: 'skill-4',
+    id: '4',  // Matches quiz_id in mockQuizzes
     name: 'Database Optimization',
     category: 'Backend Development',
     difficulty: 'expert',
     status: 'locked'
   },
   {
-    id: 'skill-5',
+    id: '5',  // Matches quiz_id in mockQuizzes
     name: 'React Performance',
     category: 'Frontend Development',
     difficulty: 'accomplished',
     status: 'locked'
   },
   {
-    id: 'skill-6',
+    id: '6',  // Matches quiz_id in mockQuizzes
     name: 'Testing with AI',
     category: 'Quality Assurance',
     difficulty: 'developing',
     status: 'locked'
   },
   {
-    id: 'skill-7',
+    id: '1',  // Duplicate ID for variety - will link to same quiz
     name: 'CI/CD Pipeline',
     category: 'DevOps',
     difficulty: 'accomplished',
     status: 'locked'
   },
   {
-    id: 'skill-8',
+    id: '4',  // Duplicate ID for variety - will link to same quiz
     name: 'UI/UX Basics',
     category: 'Design',
     difficulty: 'beginner',
     status: 'locked'
   },
   {
-    id: 'skill-9',
+    id: '5',  // Duplicate ID for variety - will link to same quiz
     name: 'GraphQL Implementation',
     category: 'Backend Development',
     difficulty: 'expert',
