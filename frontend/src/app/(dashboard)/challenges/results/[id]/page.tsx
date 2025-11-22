@@ -3,7 +3,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { mockSubmissions, mockQuizzes } from '@/lib/mockQuizzes'
+import { mockSubmissions, mockQuizzes } from '@/lib/mockChallenges'
 
 export default function EvaluationResultsPage({ params }: { params: { id: string } }) {
   const router = useRouter()
@@ -49,7 +49,7 @@ export default function EvaluationResultsPage({ params }: { params: { id: string
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 AIQ Assessment Results
               </h1>
-              <p className="text-gray-600">{challenge?.title}</p>
+              <p className="text-gray-600">{quiz?.title}</p>
               <div className="flex items-center gap-4 mt-3 text-sm text-gray-600">
                 <span>Submitted: {new Date(submission.submitted_at).toLocaleString()}</span>
                 <span>•</span>
