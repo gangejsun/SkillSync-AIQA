@@ -4,7 +4,7 @@ import React, { useState, ChangeEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
-  mockChallenges,
+  mockQuizzes,
   mockSubmissions,
   getDifficultyColor,
   getCategoryColor,
@@ -13,8 +13,8 @@ import {
 
 export default function ChallengeDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
-  const challenge = mockChallenges.find((c) => c.challenge_id === params.id)
-  const submissions = mockSubmissions.filter((s) => s.challenge_id === params.id)
+  const quiz = mockQuizzes.find((c) => c.quiz_id === params.id)
+  const submissions = mockSubmissions.filter((s) => s.quiz_id === params.id)
 
   const [submissionType, setSubmissionType] = useState<'github' | 'url' | 'file'>('github')
   const [submissionUrl, setSubmissionUrl] = useState('')
@@ -22,7 +22,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSubmitForm, setShowSubmitForm] = useState(false)
 
-  if (!challenge) {
+  if (!quiz) {
     return (
       <div className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -74,36 +74,36 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
               <div className="flex items-center gap-3 mb-4">
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-medium border ${getDifficultyColor(
-                    challenge.difficulty
+                    quiz.difficulty
                   )}`}
                 >
-                  {challenge.difficulty}
+                  {quiz.difficulty}
                 </span>
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(
-                    challenge.category
+                    quiz.category
                   )}`}
                 >
-                  {challenge.category}
+                  {quiz.category}
                 </span>
-                {challenge.status && challenge.status !== 'not_started' && (
+                {quiz.status && quiz.status !== 'not_started' && (
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                      challenge.status
+                      quiz.status
                     )}`}
                   >
-                    {challenge.status.replace('_', ' ')}
+                    {quiz.status.replace('_', ' ')}
                   </span>
                 )}
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {challenge.title}
+                {quiz.title}
               </h1>
-              <p className="text-gray-600 text-lg">{challenge.description}</p>
+              <p className="text-gray-600 text-lg">{quiz.description}</p>
             </div>
             <div className="text-right ml-8">
               <div className="text-4xl font-bold text-indigo-600 mb-1">
-                {challenge.points}
+                {quiz.points}
               </div>
               <div className="text-sm text-gray-600">points</div>
             </div>
@@ -119,7 +119,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              Time Limit: {challenge.time_limit_minutes} minutes
+              Time Limit: {quiz.time_limit_minutes} minutes
             </div>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,7 +130,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              {challenge.test_cases} Test Cases
+              {quiz.test_cases} Test Cases
             </div>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,9 +141,9 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
                   d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              {challenge.participants} Participants
+              {quiz.participants} Participants
             </div>
-            <div>Success Rate: {challenge.success_rate}%</div>
+            <div>Success Rate: {quiz.success_rate}%</div>
           </div>
         </div>
 
@@ -151,7 +151,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Requirements</h2>
           <ul className="space-y-3">
-            {challenge.requirements.map((req, index) => (
+            {quiz.requirements.map((req, index) => (
               <li key={index} className="flex items-start gap-3">
                 <svg
                   className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
@@ -176,7 +176,7 @@ export default function ChallengeDetailPage({ params }: { params: { id: string }
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Technologies</h2>
           <div className="flex flex-wrap gap-2">
-            {challenge.tags.map((tag) => (
+            {quiz.tags.map((tag) => (
               <span
                 key={tag}
                 className="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium"

@@ -1,15 +1,15 @@
-// Mock data for Challenge System
+// Mock data for Quiz System
 
 export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert'
-export type ChallengeCategory = 'development' | 'debugging' | 'optimization' | 'architecture' | 'testing'
-export type ChallengeStatus = 'not_started' | 'in_progress' | 'submitted' | 'completed'
+export type QuizCategory = 'development' | 'debugging' | 'optimization' | 'architecture' | 'testing'
+export type QuizStatus = 'not_started' | 'in_progress' | 'submitted' | 'completed'
 
-export interface Challenge {
-  challenge_id: string
+export interface Quiz {
+  quiz_id: string
   title: string
   description: string
   difficulty: DifficultyLevel
-  category: ChallengeCategory
+  category: QuizCategory
   points: number
   time_limit_minutes: number
   requirements: string[]
@@ -18,12 +18,12 @@ export interface Challenge {
   participants: number
   created_at: string
   tags: string[]
-  status?: ChallengeStatus
+  status?: QuizStatus
 }
 
-export interface ChallengeSubmission {
+export interface QuizSubmission {
   submission_id: string
-  challenge_id: string
+  quiz_id: string
   user_id: string
   github_url: string
   submitted_at: string
@@ -82,9 +82,9 @@ export interface AIFeedback {
   overall_comment: string
 }
 
-export const mockChallenges: Challenge[] = [
+export const mockQuizzes: Quiz[] = [
   {
-    challenge_id: '1',
+    quiz_id: '1',
     title: 'Build a REST API with Authentication',
     description: 'Create a RESTful API with JWT authentication, user registration, and protected routes. Implement CRUD operations for a todo list application.',
     difficulty: 'intermediate',
@@ -106,7 +106,7 @@ export const mockChallenges: Challenge[] = [
     status: 'not_started'
   },
   {
-    challenge_id: '2',
+    quiz_id: '2',
     title: 'Optimize Database Queries',
     description: 'Given a slow-performing database, identify bottlenecks and optimize queries to improve response time by at least 50%.',
     difficulty: 'advanced',
@@ -128,7 +128,7 @@ export const mockChallenges: Challenge[] = [
     status: 'completed'
   },
   {
-    challenge_id: '3',
+    quiz_id: '3',
     title: 'Debug Memory Leak in React App',
     description: 'A React application has a memory leak causing performance degradation. Find and fix all memory leaks.',
     difficulty: 'advanced',
@@ -150,7 +150,7 @@ export const mockChallenges: Challenge[] = [
     status: 'in_progress'
   },
   {
-    challenge_id: '4',
+    quiz_id: '4',
     title: 'Implement Binary Search Tree',
     description: 'Create a balanced binary search tree with insert, delete, search, and traversal operations.',
     difficulty: 'beginner',
@@ -172,7 +172,7 @@ export const mockChallenges: Challenge[] = [
     status: 'not_started'
   },
   {
-    challenge_id: '5',
+    quiz_id: '5',
     title: 'Design Microservices Architecture',
     description: 'Design a scalable microservices architecture for an e-commerce platform. Include API Gateway, service discovery, and inter-service communication.',
     difficulty: 'expert',
@@ -194,7 +194,7 @@ export const mockChallenges: Challenge[] = [
     status: 'not_started'
   },
   {
-    challenge_id: '6',
+    quiz_id: '6',
     title: 'Write Unit Tests for Legacy Code',
     description: 'Add comprehensive unit tests to a legacy codebase without breaking existing functionality. Achieve 80% code coverage.',
     difficulty: 'intermediate',
@@ -217,10 +217,10 @@ export const mockChallenges: Challenge[] = [
   },
 ]
 
-export const mockSubmissions: ChallengeSubmission[] = [
+export const mockSubmissions: QuizSubmission[] = [
   {
     submission_id: 's1',
-    challenge_id: '2',
+    quiz_id: '2',
     user_id: 'user1',
     github_url: 'https://github.com/user/db-optimization',
     submitted_at: '2025-01-20T10:30:00Z',
@@ -290,7 +290,7 @@ export const mockSubmissions: ChallengeSubmission[] = [
   },
   {
     submission_id: 's2',
-    challenge_id: '3',
+    quiz_id: '3',
     user_id: 'user1',
     github_url: 'https://github.com/user/memory-leak-fix',
     submitted_at: '2025-01-21T14:15:00Z',
@@ -298,7 +298,7 @@ export const mockSubmissions: ChallengeSubmission[] = [
   },
   {
     submission_id: 's3',
-    challenge_id: '6',
+    quiz_id: '6',
     user_id: 'user1',
     github_url: 'https://github.com/user/unit-tests',
     submitted_at: '2025-01-19T16:45:00Z',
@@ -380,7 +380,7 @@ export function getDifficultyColor(difficulty: DifficultyLevel): string {
   return colors[difficulty]
 }
 
-export function getCategoryColor(category: ChallengeCategory): string {
+export function getCategoryColor(category: QuizCategory): string {
   const colors = {
     development: 'bg-indigo-100 text-indigo-700',
     debugging: 'bg-orange-100 text-orange-700',
@@ -391,7 +391,7 @@ export function getCategoryColor(category: ChallengeCategory): string {
   return colors[category]
 }
 
-export function getStatusColor(status: ChallengeStatus): string {
+export function getStatusColor(status: QuizStatus): string {
   const colors = {
     not_started: 'bg-gray-100 text-gray-700',
     in_progress: 'bg-blue-100 text-blue-700',

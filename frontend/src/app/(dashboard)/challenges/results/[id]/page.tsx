@@ -3,13 +3,13 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { mockSubmissions, mockChallenges } from '@/lib/mockChallenges'
+import { mockSubmissions, mockQuizzes } from '@/lib/mockQuizzes'
 
 export default function EvaluationResultsPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const submission = mockSubmissions.find((s) => s.submission_id === params.id)
-  const challenge = submission
-    ? mockChallenges.find((c) => c.challenge_id === submission.challenge_id)
+  const quiz = submission
+    ? mockQuizzes.find((c) => c.quiz_id === submission.quiz_id)
     : null
 
   if (!submission || !submission.evaluation_result) {
@@ -36,7 +36,7 @@ export default function EvaluationResultsPage({ params }: { params: { id: string
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <Link
-          href={`/challenges/${submission.challenge_id}`}
+          href={`/challenges/${submission.quiz_id}`}
           className="text-indigo-600 hover:text-indigo-700 mb-6 inline-flex items-center gap-2"
         >
           ← Back to Assessment
@@ -408,7 +408,7 @@ export default function EvaluationResultsPage({ params }: { params: { id: string
             Browse More Challenges
           </Link>
           <button
-            onClick={() => router.push(`/challenges/${submission.challenge_id}`)}
+            onClick={() => router.push(`/challenges/${submission.quiz_id}`)}
             className="flex-1 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
           >
             Try Again

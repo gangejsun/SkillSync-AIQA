@@ -3,33 +3,33 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import {
-  mockChallenges,
+  mockQuizzes,
   getDifficultyColor,
   getCategoryColor,
   getStatusColor,
   type DifficultyLevel,
-  type ChallengeCategory,
+  type QuizCategory,
 } from '@/lib/mockChallenges'
 
 export default function ChallengesPage() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyLevel | 'all'>('all')
-  const [selectedCategory, setSelectedCategory] = useState<ChallengeCategory | 'all'>('all')
+  const [selectedCategory, setSelectedCategory] = useState<QuizCategory | 'all'>('all')
 
-  const filteredChallenges = mockChallenges.filter((challenge) => {
-    if (selectedDifficulty !== 'all' && challenge.difficulty !== selectedDifficulty) {
+  const filteredQuizzes = mockQuizzes.filter((quiz) => {
+    if (selectedDifficulty !== 'all' && quiz.difficulty !== selectedDifficulty) {
       return false
     }
-    if (selectedCategory !== 'all' && challenge.category !== selectedCategory) {
+    if (selectedCategory !== 'all' && quiz.category !== selectedCategory) {
       return false
     }
     return true
   })
 
   const stats = {
-    total: mockChallenges.length,
-    completed: mockChallenges.filter((c) => c.status === 'completed').length,
-    inProgress: mockChallenges.filter((c) => c.status === 'in_progress').length,
-    totalPoints: mockChallenges
+    total: mockQuizzes.length,
+    completed: mockQuizzes.filter((c) => c.status === 'completed').length,
+    inProgress: mockQuizzes.filter((c) => c.status === 'in_progress').length,
+    totalPoints: mockQuizzes
       .filter((c) => c.status === 'completed')
       .reduce((sum, c) => sum + c.points, 0),
   }
@@ -116,10 +116,10 @@ export default function ChallengesPage() {
 
         {/* Quiz List */}
         <div className="flex flex-col gap-6">
-          {filteredChallenges.map((challenge) => (
+          {filteredQuizzes.map((quiz) => (
             <Link
-              key={challenge.challenge_id}
-              href={`/challenges/${challenge.challenge_id}`}
+              key={quiz.quiz_id}
+              href={`/challenges/${quiz.quiz_id}`}
               className="block"
             >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer">
@@ -127,35 +127,35 @@ export default function ChallengesPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-xl font-semibold text-gray-900">
-                        {challenge.title}
+                        {quiz.title}
                       </h3>
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-medium border ${getDifficultyColor(
-                          challenge.difficulty
+                          quiz.difficulty
                         )}`}
                       >
-                        {challenge.difficulty}
+                        {quiz.difficulty}
                       </span>
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(
-                          challenge.category
+                          quiz.category
                         )}`}
                       >
-                        {challenge.category}
+                        {quiz.category}
                       </span>
-                      {challenge.status && challenge.status !== 'not_started' && (
+                      {quiz.status && quiz.status !== 'not_started' && (
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                            challenge.status
+                            quiz.status
                           )}`}
                         >
-                          {challenge.status.replace('_', ' ')}
+                          {quiz.status.replace('_', ' ')}
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-600 mb-4">{challenge.description}</p>
+                    <p className="text-gray-600 mb-4">{quiz.description}</p>
                     <div className="flex flex-wrap gap-2 mb-3">
-                      {challenge.tags.map((tag) => (
+                      {quiz.tags.map((tag) => (
                         <span
                           key={tag}
                           className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
@@ -167,7 +167,7 @@ export default function ChallengesPage() {
                   </div>
                   <div className="text-right ml-4">
                     <div className="text-2xl font-bold text-indigo-600 mb-1">
-                      {challenge.points}
+                      {quiz.points}
                     </div>
                     <div className="text-sm text-gray-600">points</div>
                   </div>
@@ -184,7 +184,7 @@ export default function ChallengesPage() {
                           d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                      {challenge.time_limit_minutes} min
+                      {quiz.time_limit_minutes} min
                     </div>
                     <div className="flex items-center gap-2">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +195,7 @@ export default function ChallengesPage() {
                           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                      {challenge.test_cases} tests
+                      {quiz.test_cases} tests
                     </div>
                     <div className="flex items-center gap-2">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,11 +206,11 @@ export default function ChallengesPage() {
                           d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                         />
                       </svg>
-                      {challenge.participants} participants
+                      {quiz.participants} participants
                     </div>
                   </div>
                   <div className="font-medium">
-                    Success Rate: {challenge.success_rate}%
+                    Success Rate: {quiz.success_rate}%
                   </div>
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function ChallengesPage() {
           ))}
         </div>
 
-        {filteredChallenges.length === 0 && (
+        {filteredQuizzes.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-600">No quizzes found with the selected filters</p>
           </div>
