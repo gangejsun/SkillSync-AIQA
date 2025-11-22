@@ -43,14 +43,14 @@ export default function ChallengesPage() {
             AIQ Assessment
           </h1>
           <p className="text-gray-600">
-            개발, 디자인, 마케팅, 기획 등 전 직군에서 필요한 AI 활용 능력을 측정하는 실전 챌린지
+            개발, 디자인, 마케팅, 기획 등 전 직군에서 필요한 AI 활용 능력을 측정하는 실전 퀴즈
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <p className="text-sm text-gray-600 mb-1">Total Challenges</p>
+            <p className="text-sm text-gray-600 mb-1">Total Quizzes</p>
             <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -114,7 +114,7 @@ export default function ChallengesPage() {
           </div>
         </div>
 
-        {/* Challenge List */}
+        {/* Quiz List */}
         <div className="flex flex-col gap-6">
           {filteredChallenges.map((challenge) => (
             <Link
@@ -220,7 +220,7 @@ export default function ChallengesPage() {
 
         {filteredChallenges.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-            <p className="text-gray-600">No challenges found with the selected filters</p>
+            <p className="text-gray-600">No quizzes found with the selected filters</p>
           </div>
         )}
       </div>
